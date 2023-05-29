@@ -10,19 +10,19 @@
  * struct specifier - defines the specifier and the respective function
  *
  * @specifier: Specifier
- * @resp_func: a pointer to the function that handel the specifier
+ * @resp_func: a pointer to the function that handle the specifier
  */
 typedef struct specifier
 {
 	char specifier;
 	int (*resp_func)(va_list);
-}
-specifier_t;
+} specifier_t;
 
 
-int print_char(va_list ap);
-int print_string(va_list ap);
-int print_percent(va_list ap);
+int print_char(va_list arg_p);
+int print_string(va_list arg_p);
+int print_percent(va_list arg_p);
+int get_specifier_func(const char *format, va_list arg_p, int count);
 int _printf(const char *format, ...);
 
 #endif
