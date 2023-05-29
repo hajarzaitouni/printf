@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 
 /**
  * get_specifier_func - handle the specifier and the correponding function
@@ -17,12 +17,10 @@ int get_specifier_func(const char *format, va_list arg_p, int count)
 		{'%', print_percent},
 		{'\0', NULL}
 	};
-	int i, size;
+	int i;
 
 	i = 0;
-	size = sizeof(types) / sizeof(types[0]);
-
-	while (i < size)
+	while (types[i].specifier != '\0')
 	{
 		if (types[i].specifier == *format)
 		{
@@ -31,6 +29,8 @@ int get_specifier_func(const char *format, va_list arg_p, int count)
 		}
 		i++;
 	}
+	if (types[i].specifier == '\0')
+		return (-1);
 
 	return (count);
 }

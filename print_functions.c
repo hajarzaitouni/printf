@@ -25,7 +25,7 @@ int print_string(va_list arg_p)
 	const char *str = va_arg(arg_p, char *);
 
 	if (str == 0)
-		str = "(null)";
+		return (write(1, "(null)", 6));
 	while (*str != '\0')
 	{
 		len += write(1, str, sizeof(char));
