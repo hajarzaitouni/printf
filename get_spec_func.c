@@ -15,6 +15,8 @@ int get_specifier_func(const char *format, va_list arg_p, int count)
 		{'c', print_char},
 		{'s', print_string},
 		{'%', print_percent},
+		{'d', print_integer},
+		{'i', print_integer},
 		{'\0', NULL}
 	};
 	int i;

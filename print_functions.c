@@ -44,3 +44,39 @@ int print_percent(__attribute__((unused)) va_list arg_p)
 {
 	return (write(1, "%", sizeof(char)));
 }
+
+/**
+ * print_integer - prints an integer number
+ * @arg_p: argument pointer
+ * Return: the number of printed numbers
+ */
+
+int print_integer(va_list arg_p)
+{
+	long int num = va_arg(arg_p, int);
+	char buffer[30];
+	int len = 0, isnegative = 0;
+	int i = sizeof(buffer) - 1;
+
+	if (num < 0)
+	{
+		isnegative = 1;
+		num = (-1) * num;
+	}
+
+	do {
+		buffer[i] = (num % 10) + '0';
+		num = num / 10;
+		i--;
+	} while (num > 0);
+
+	if (isnegative)
+	{
+		buffer[i] = '-';
+		i--;
+	}
+
+	len = write(1, &buffer[i + 1], sizeof(buffer) - i - 1);
+
+	return (len);
+}
