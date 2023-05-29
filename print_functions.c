@@ -40,7 +40,7 @@ int print_string(va_list arg_p)
  * Return: the number of printed charcters
  */
 
-int print_percent( __attribute__((unused)) va_list arg_p)
+int print_percent(__attribute__((unused)) va_list arg_p)
 {
 	return (write(1, "%", sizeof(char)));
 }

@@ -1,4 +1,4 @@
-#include "main.h"
+include "main.h"
 
 /**
  * get_specifier_func - handle the specifier and the correponding function
