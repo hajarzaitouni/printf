@@ -105,7 +105,6 @@ int print_hexa_lower(va_list arg_p)
 {
 	unsigned long int n = va_arg(arg_p, unsigned long int);
 	char buffer[32];
-	unsigned long int n = va_arg(arg_p, unsigned long int);
 	unsigned long int i = sizeof(buffer) - 1, count = 0;
 
 	if (n == 0)
@@ -138,7 +137,6 @@ int print_hexa_upper(va_list arg_p)
 {
 	unsigned long int n = va_arg(arg_p, unsigned long int);
 	char buffer[32];
-	unsigned long int n = va_arg(arg_p, unsigned long int);
 	unsigned long int i = sizeof(buffer) - 1, count = 0;
 
 	if (n == 0)
