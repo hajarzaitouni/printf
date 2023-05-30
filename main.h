@@ -24,6 +24,7 @@ int print_string(va_list arg_p);
 int print_percent(va_list arg_p);
 int print_integer(va_list arg_p);
 int print_binary(va_list arg_p);
+int print_hexa_lower(va_list arg_p);
 int get_specifier_func(const char *format, va_list arg_p, int count);
 int _printf(const char *format, ...);
 
