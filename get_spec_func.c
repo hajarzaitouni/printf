@@ -18,6 +18,7 @@ int get_specifier_func(const char *format, va_list arg_p, int count)
 		{'d', print_integer},
 		{'i', print_integer},
 		{'b', print_binary},
+		{'u', print_unsigned},
 		{'x', print_hexa_lower},
 		{'\0', NULL}
 	};

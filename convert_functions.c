@@ -8,31 +8,60 @@
 
 int print_binary(va_list arg_p)
 {
-	unsigned long int n = va_arg(arg_p, unsigned int);
-	char array[32];
-	int i = sizeof(array) - 1, count = 0;
+	unsigned long int n = va_arg(arg_p, unsigned long int);
+	char buffer[32];
+	int i = sizeof(buffer) - 1, count = 0;
 	unsigned long int j;
 	int extra_zeros = 1;
 
 	if (n == 0)
 		return (write(1, "0", 1));
 
-	array[i] = '\0';
+	buffer[i] = '\0';
 	while (n > 0)
 	{
-		i--;
 		if (n % 2 == 1)
-			array[i] = '1';
+			buffer[--i] = '1';
 		else
-			array[i] = '0';
+			buffer[--i] = '0';
 		n = n / 2;
 	}
-	for (j = i; j < sizeof(array); j++)
+	for (j = i; j < sizeof(buffer); j++)
 	{
-		if (extra_zeros == 1 && array[j] == '0')
+		if (extra_zeros == 1 && buffer[j] == '0')
 			continue;
 		extra_zeros = 0;
-		count += write(1, &array[j], 1);
+		count += write(1, &buffer[j], 1);
+	}
+	return (count);
+}
+
+/**
+ * print_unsigned - prints an unsigned number
+ * @arg_p: argument pointer
+ * Return: The number of printed characters
+ */
+int print_unsigned(va_list arg_p)
+{
+	unsigned int n = va_arg(arg_p, unsigned int);
+	char buffer[32];
+	unsigned int i = sizeof(buffer) - 1;
+	int count = 0;
+
+	if (n == 0)
+		return (write(1, "0", 1));
+
+	buffer[i] = '\0';
+	while (n > 0)
+	{
+		buffer[--i] = (n % 10) + '0';
+		n = n / 10;
+	}
+
+	for ( ; i < sizeof(buffer); i++)
+	{
+		write(1, &buffer[i], 1);
+		count++;
 	}
 	return (count);
 }
