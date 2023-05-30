@@ -27,6 +27,7 @@ int print_binary(va_list arg_p);
 int print_unsigned(va_list arg_p);
 int print_octal(va_list arg_p);
 int print_hexa_lower(va_list arg_p);
+int print_hexa_upper(va_list arg_p);
 int get_specifier_func(const char *format, va_list arg_p, int count);
 int _printf(const char *format, ...);
 

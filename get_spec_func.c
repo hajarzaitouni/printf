@@ -21,6 +21,7 @@ int get_specifier_func(const char *format, va_list arg_p, int count)
 		{'u', print_unsigned},
 		{'o', print_octal},
 		{'x', print_hexa_lower},
+		{'X', print_hexa_upper},
 		{'\0', NULL}
 	};
 	int i;

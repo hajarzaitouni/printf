@@ -105,6 +105,7 @@ int print_hexa_lower(va_list arg_p)
 {
 	unsigned long int n = va_arg(arg_p, unsigned long int);
 	char buffer[32];
+	unsigned long int n = va_arg(arg_p, unsigned long int);
 	unsigned long int i = sizeof(buffer) - 1, count = 0;
 
 	if (n == 0)
@@ -125,5 +126,37 @@ int print_hexa_lower(va_list arg_p)
 		count += write(1, &buffer[i], 1);
 	}
 
+	return (count);
+}
+
+/**
+ * print_hexa_upper - prints an unsigned number in hexadecimal
+ * @arg_p: argument pointer
+ * Return: the number of printed characters
+ */
+int print_hexa_upper(va_list arg_p)
+{
+	unsigned long int n = va_arg(arg_p, unsigned long int);
+	char buffer[32];
+	unsigned long int n = va_arg(arg_p, unsigned long int);
+	unsigned long int i = sizeof(buffer) - 1, count = 0;
+
+	if (n == 0)
+		return (write(1, "0", 1));
+	buffer[i] = '\0';
+	while (n > 0)
+	{
+		int r = n % 16;/* r is the remainder */
+
+		if (r < 10)
+			buffer[--i] = r + '0';
+		else
+			buffer[--i] = (r - 10) + 'A';
+		n = n / 16;
+	}
+	for ( ; i < sizeof(buffer); i++)
+	{
+		count += write(1, &buffer[i], 1);
+	}
 	return (count);
 }
