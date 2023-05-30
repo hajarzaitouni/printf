@@ -67,6 +67,34 @@ int print_unsigned(va_list arg_p)
 }
 
 /**
+ * print_octal - prints an unsigned number in octal
+ * @arg_p: argument pointer
+ * Return: the number of printed characters
+ */
+int print_octal(va_list arg_p)
+{
+	unsigned int n = va_arg(arg_p, unsigned int);
+	char buffer[32];
+	int i = sizeof(buffer) - 1;
+
+	if (n == 0)
+		return (write(1, "0", 1));
+
+	buffer[i] = '\0';
+	while (n > 0)
+	{
+		buffer[--i] = (n % 8) + '0';
+		n /= 8;
+	}
+
+	for (int j = i; j < sizeof(buffer), j++)
+	{
+		count += write(1, &buffer[j], 1);
+	}
+	return (count);
+}
+
+/**
  * print_hexa_lower - prints an unsigned number in hexadecimal
  * @arg_p: argument pointer
  * Return: the number of printed characters
