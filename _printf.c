@@ -16,8 +16,7 @@ int _printf(const char *format, ...)
 
 	va_start(arg_p, format);
 
-	if ((format == NULL && format[0] == '%') ||
-		(format == NULL && format[1] == '\0'))
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && format[2] == '\0')
 		return (-1);
@@ -29,7 +28,9 @@ int _printf(const char *format, ...)
 			count = get_specifier_func(format, arg_p, count);
 		}
 		else
+		{
 			count += write(1, format, sizeof(char));
+		}
 		format++;
 	}
 

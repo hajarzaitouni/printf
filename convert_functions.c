@@ -8,30 +8,27 @@
 
 int print_binary(va_list arg_p)
 {
-	unsigned long int n = va_arg(arg_p, unsigned long int);
+	unsigned int n = va_arg(arg_p, unsigned int);
 	char buffer[32];
-	int i = sizeof(buffer) - 1, count = 0;
-	unsigned long int j;
-	int extra_zeros = 1;
+	int i = 0;
+	int count = 0;
 
 	if (n == 0)
-		return (write(1, "0", 1));
+	{
+		buffer[i] = '0';
+		count++;
+	}
 
-	buffer[i] = '\0';
 	while (n > 0)
 	{
-		if (n % 2 == 1)
-			buffer[--i] = '1';
-		else
-			buffer[--i] = '0';
+		buffer[i] = (n % 2) + '0';
 		n = n / 2;
+		i++;
+		count++;
 	}
-	for (j = i; j < sizeof(buffer); j++)
+	for (i = count - 1; i >= 0; i--)
 	{
-		if (extra_zeros == 1 && buffer[j] == '0')
-			continue;
-		extra_zeros = 0;
-		count += write(1, &buffer[j], 1);
+		write(1, &buffer[i], 1);
 	}
 	return (count);
 }
