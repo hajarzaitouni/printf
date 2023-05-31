@@ -42,23 +42,26 @@ int print_unsigned(va_list arg_p)
 {
 	unsigned int n = va_arg(arg_p, unsigned int);
 	char buffer[32];
-	unsigned int i = sizeof(buffer) - 1;
+	int i = 0;
 	int count = 0;
 
 	if (n == 0)
-		return (write(1, "0", 1));
-
-	buffer[i] = '\0';
-	while (n > 0)
 	{
-		buffer[--i] = (n % 10) + '0';
-		n = n / 10;
+		buffer[i] = '0';
+		count++;
 	}
 
-	for ( ; i < sizeof(buffer); i++)
+	while (n > 0)
+	{
+		buffer[i] = (n % 10) + '0';
+		n = n / 10;
+		i++;
+		count++;
+	}
+
+	for (i = count - 1; i >= 0; i--)
 	{
 		write(1, &buffer[i], 1);
-		count++;
 	}
 	return (count);
 }
@@ -72,22 +75,26 @@ int print_octal(va_list arg_p)
 {
 	unsigned int n = va_arg(arg_p, unsigned int);
 	char buffer[32];
-	unsigned int i = sizeof(buffer) - 1;
+	int i = 0;
 	int count = 0;
 
 	if (n == 0)
-		return (write(1, "0", 1));
-
-	buffer[i] = '\0';
-	while (n > 0)
 	{
-		buffer[--i] = (n % 8) + '0';
-		n /= 8;
+		buffer[i] = '0';
+		count++;
 	}
 
-	for ( ; i < sizeof(buffer); i++)
+	while (n > 0)
 	{
-		count += write(1, &buffer[i], 1);
+		buffer[i] = (n % 8) + '0';
+		n = n / 8;
+		i++;
+		count++;
+	}
+
+	for (i = count - 1; i >= 0; i--)
+	{
+		write(1, &buffer[i], 1);
 	}
 	return (count);
 }
@@ -100,26 +107,32 @@ int print_octal(va_list arg_p)
 
 int print_hexa_lower(va_list arg_p)
 {
-	unsigned long int n = va_arg(arg_p, unsigned long int);
+	unsigned int n = va_arg(arg_p, unsigned int);
 	char buffer[32];
-	unsigned long int i = sizeof(buffer) - 1, count = 0;
+	int i = 0;
+	int count = 0;
 
 	if (n == 0)
-		return (write(1, "0", 1));
-	buffer[i] = '\0';
+	{
+		buffer[i] = '0';
+		count++;
+	}
+
 	while (n > 0)
 	{
 		int r = n % 16;/* r is the remainder */
 
 		if (r < 10)
-			buffer[--i] = r + '0';
+			buffer[i] = r + '0';
 		else
-			buffer[--i] = (r - 10) + 'a';
+			buffer[i] = (r - 10) + 'a';
 		n = n / 16;
+		i++;
+		count++;
 	}
-	for ( ; i < sizeof(buffer); i++)
+	for (i = count - 1; i >= 0; i--)
 	{
-		count += write(1, &buffer[i], 1);
+		write(1, &buffer[i], 1);
 	}
 
 	return (count);
@@ -132,26 +145,32 @@ int print_hexa_lower(va_list arg_p)
  */
 int print_hexa_upper(va_list arg_p)
 {
-	unsigned long int n = va_arg(arg_p, unsigned long int);
+	unsigned int n = va_arg(arg_p, unsigned int);
 	char buffer[32];
-	unsigned long int i = sizeof(buffer) - 1, count = 0;
+	int i = 0;
+	int count = 0;
 
 	if (n == 0)
-		return (write(1, "0", 1));
-	buffer[i] = '\0';
+	{
+		buffer[i] = '0';
+		count++;
+	}
+
 	while (n > 0)
 	{
 		int r = n % 16;/* r is the remainder */
 
 		if (r < 10)
-			buffer[--i] = r + '0';
+			buffer[i] = r + '0';
 		else
-			buffer[--i] = (r - 10) + 'A';
+			buffer[i] = (r - 10) + 'A';
 		n = n / 16;
+		i++;
+		count++;
 	}
-	for ( ; i < sizeof(buffer); i++)
+	for (i = count - 1; i >= 0; i--)
 	{
-		count += write(1, &buffer[i], 1);
+		write(1, &buffer[i], 1);
 	}
 	return (count);
 }
