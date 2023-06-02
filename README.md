@@ -28,3 +28,15 @@
 	* Handle the following custom conversion specifiers:
 
 		* b: the unsigned int argument is converted to binary.
+
+3. What one has not experienced, one will never understand in print.
+	* Handle the following conversion specifiers:
+		u
+		o
+		x
+		X
+		You don’t have to handle the flag characters
+		You don’t have to handle field width
+		You don’t have to handle precision
+		You don’t have to handle the length modifiers
+
